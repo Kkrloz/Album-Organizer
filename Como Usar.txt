@@ -1,0 +1,52 @@
+Como Usar
+
+O script é executado via terminal e foi feito para rodar na sua "Pasta Raiz" de músicas (a pasta que contém as pastas dos artistas).
+
+Passo 1: O Teste de Segurança (Recomendado)
+
+Antes de alterar qualquer arquivo, use o parâmetro --dry-run. O script entrará em "modo simulação", lerá a sua biblioteca e imprimirá no terminal exatamente o que ele faria, sem modificar nada no seu disco.
+
+comando: python album_organizer.py /caminho/para/suas/musicas --dry-run
+
+Dica: Analise o relatório gerado. Se os nomes e anos estiverem corretos, avance para o Passo 2.
+
+Passo 2: Execução Definitiva (Pra Valer)
+
+Se o resultado do teste estiver perfeito, rode o comando sem o --dry-run. O script vai renomear as pastas, embutir as tags ID3, baixar as capas e criar as playlists.
+
+comando: python album_organizer.py /caminho/para/suas/musicas
+
+(Nota: Esse processo pode demorar um pouco dependendo do tamanho da sua biblioteca e da velocidade da internet para baixar as capas).
+
+Passo 3: Opções Extras de Comando
+
+Você pode combinar os parâmetros abaixo conforme a sua necessidade:
+
+--overwrite: Força o download de novas capas e recria os .m3u, sobrescrevendo os que já existem na pasta.
+--only-cover: Pula a edição de tags/pastas e apenas baixa as imagens cover.jpg que estiverem faltando.
+--only-m3u: Pula a edição de tags/pastas e apenas gera os arquivos de playlist .m3u.
+
+Exemplo combinando parâmetros:
+
+comando: python album_organizer.py /caminho/para/suas/musicas --only-cover --overwrite
+📁 Exemplo de Transformação (Antes e Depois)
+
+O script transforma a sua biblioteca de forma limpa e padronizada, mantendo a tag interna imaculada e a pasta organizada visualmente:
+
+Antes da Execução:
+
+Musica/
+└── Deftones/
+    └── 1997 Around The Fur/
+        ├── 01 Around the Fur.mp3
+        └── 02 My Own Summer.mp3
+
+Depois da Execução:
+
+Musica/
+└── Deftones/
+    └── Around the Fur (1997)/
+        ├── 01. Around the Fur.mp3
+        ├── 02. My Own Summer.mp3
+        ├── cover.jpg
+        └── Around the Fur (1997).m3u
